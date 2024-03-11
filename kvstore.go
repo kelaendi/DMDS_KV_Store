@@ -1,7 +1,7 @@
 package kvstore
 
 type KVStore interface {
-	New() (kv KVStore, er error)
+	// New() (kv KVStore, er error)
 	Open()
 	Delete()
 	Close()
@@ -12,9 +12,11 @@ type KVStore interface {
 type kvstore struct {
 }
 
-//	func (kv kvstore) New() (kv *KVStore, er error) {
-//		return
-//	}
+func NewKVStore() *kvstore {
+	kv := kvstore{}
+	return &kv
+}
+
 func (kv kvstore) Open() {
 
 }
@@ -28,9 +30,5 @@ func (kv kvstore) Put(key uint64, value [10]byte) {
 
 }
 func (kv kvstore) Get(key uint64) (value [10]byte) {
-	return
-}
-
-func New() (kv KVStore) {
-	return
+	return [10]byte{}
 }
