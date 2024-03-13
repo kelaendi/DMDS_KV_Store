@@ -11,12 +11,11 @@ type KVStore interface {
 type Option func(kv KVStore) KVStore
 
 func NewKVStore(options ...Option) (kv KVStore) {
-	return nil
 	// for _, o := range options {
 	// 	kv = o(kv)
 	// }
-	// return kv
 	// return &kvstore{}
+	return kv
 }
 
 // type kvstore struct {
