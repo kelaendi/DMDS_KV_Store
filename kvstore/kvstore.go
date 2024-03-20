@@ -1,21 +1,25 @@
 package kvstore
 
 type KVStore interface {
-	Open() error
-	Close() error
-	Delete() error
 	Put(key uint64, value [10]byte)
 	Get(key uint64) (value [10]byte)
 }
 
+type KVStoreControl interface {
+	NewKVStore() (kv KVStore)
+	Open(kv KVStore) error
+	Close(kv KVStore) error
+	Delete(kv KVStore) error
+}
+
 type Option func(kv KVStore) KVStore
 
-func NewKVStore(options ...Option) (kv KVStore) {
+func NewKVStoreControl(options ...Option) (controller KVStoreControl) {
 	// for _, o := range options {
 	// 	kv = o(kv)
 	// }
 	// return &kvstore{}
-	return kv
+	return controller
 }
 
 // type kvstore struct {

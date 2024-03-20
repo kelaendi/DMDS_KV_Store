@@ -5,7 +5,8 @@ import (
 )
 
 func main() {
-	kv := kvstore.NewKVStore()
+	controller := kvstore.NewKVStoreControl()
+	kv := controller.NewKVStore()
 	var givenValue [10]byte
 	givenValue[0] = 123
 	kv.Put(1, givenValue)
