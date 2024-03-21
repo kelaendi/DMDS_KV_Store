@@ -5,8 +5,7 @@ import (
 )
 
 func TestPutGet(t *testing.T) {
-	controller := NewKVStoreControl()
-	kv := controller.NewKVStore()
+	kv := NewKVStore()
 	var givenValue [10]byte
 	givenValue[0] = 123
 	kv.Put(1, givenValue)
@@ -17,8 +16,9 @@ func TestPutGet(t *testing.T) {
 }
 
 func TestOpenClose(t *testing.T) {
-	controller := NewKVStoreControl()
-	kv := controller.NewKVStore()
+	controller := newKVStoreControl()
+	kv := NewKVStore()
+
 	errOpen := controller.Open(kv)
 	if errOpen != nil {
 		t.Errorf(errOpen.Error())
@@ -30,8 +30,9 @@ func TestOpenClose(t *testing.T) {
 }
 
 func TestDeleteKV(t *testing.T) {
-	controller := NewKVStoreControl()
-	kv := controller.NewKVStore()
+	controller := newKVStoreControl()
+	kv := NewKVStore()
+
 	errDeleteKV := controller.Delete(kv)
 	if errDeleteKV != nil {
 		t.Errorf(errDeleteKV.Error())

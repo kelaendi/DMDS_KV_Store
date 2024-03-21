@@ -5,8 +5,7 @@ type KVStore interface {
 	Get(key uint64) (value [10]byte)
 }
 
-type KVStoreControl interface {
-	NewKVStore() (kv KVStore)
+type kvstoreControl interface {
 	Open(kv KVStore) error
 	Close(kv KVStore) error
 	Delete(kv KVStore) error
@@ -14,11 +13,15 @@ type KVStoreControl interface {
 
 type Option func(kv KVStore) KVStore
 
-func NewKVStoreControl(options ...Option) (controller KVStoreControl) {
+func NewKVStore(options ...Option) (kv KVStore) {
 	// for _, o := range options {
 	// 	kv = o(kv)
 	// }
 	// return &kvstore{}
+	return kv
+}
+
+func newKVStoreControl() (controller kvstoreControl) {
 	return controller
 }
 
